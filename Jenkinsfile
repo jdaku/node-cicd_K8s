@@ -1,6 +1,6 @@
 node{
   def Namespace = "default"
-  def ImageName = "sayarapp/sayarapp"
+  def ImageName = "ravigajjar/nodeapp"
   def Creds	= "dhub"
   try{
   stage('Checkout'){
