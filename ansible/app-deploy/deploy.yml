@@ -9,11 +9,11 @@
   connection: local
   tasks:
     - name: Deploy App
-      command: "helm install --name=app-{{ Namespace }}  --namespace={{ Namespace }} ../app --set image.repository={{ ImageName }} --set image.tag={{ imageTag }} --set namespace={{ Namespace }}"
+      command: "helm install --name=app-{{ Namespace }}  --namespace={{ Namespace }} ansible/app --set image.repository={{ ImageName }} --set image.tag={{ imageTag }} --set namespace={{ Namespace }}"
       delegate_to: localhost
       ignore_errors: yes
     - name: Update App
-      command: "helm upgrade --wait --recreate-pods --namespace={{ Namespace }} --set image.repository={{ ImageName }} --set image.tag={{ imageTag }} --set namespace={{ Namespace }} app-{{ Namespace }} ../app"
+      command: "helm upgrade --wait --recreate-pods --namespace={{ Namespace }} --set image.repository={{ ImageName }} --set image.tag={{ imageTag }} --set namespace={{ Namespace }} app-{{ Namespace }} ansible/app"
       delegate_to: localhost
       ignore_errors: yes
 
