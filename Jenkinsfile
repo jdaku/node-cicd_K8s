@@ -8,10 +8,7 @@ node{
       sh "git rev-parse --short HEAD > .git/commit-id"
       imageTag= readFile('.git/commit-id').trim()
 
-
-
   }
-
 
   stage('RUN Unit Tests'){
       sh "npm install"
@@ -26,7 +23,7 @@ node{
     }
     stage('Deploy on K8s'){
 
-     sh "ansible-playbook /var/lib/jenkins/ansible/app-deploy/deploy.yml  --user=jenkins --extra-vars ImageName=${ImageName} --extra-vars imageTag=${imageTag} --extra-vars Namespace=${Namespace}"
+     sh "ansible-playbook ansible/app-deploy/deploy.yml  --user=jenkins --extra-vars ImageName=${ImageName} --extra-vars imageTag=${imageTag} --extra-vars Namespace=${Namespace}"
     }
      } catch (err) {
       currentBuild.result = 'FAILURE'
